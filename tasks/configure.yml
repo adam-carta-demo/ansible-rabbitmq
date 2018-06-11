@@ -27,4 +27,11 @@
   with_items:
     - rabbitmq-env.conf
     - rabbitmq.config
+
+- name: Chown everything
+  file:
+    dest: "{{ rabbitmq_data_dir }}"
+    owner: "{{ rabbitmq_system_user }}"
+    group: "{{ rabbitmq_system_group }}"
+    recurse: yes
   notify: restart rabbitmq
